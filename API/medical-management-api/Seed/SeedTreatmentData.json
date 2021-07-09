@@ -1,0 +1,134 @@
+[
+    {
+        "id": 1,
+        "title": "CT brain scan",
+        "type": 4,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tortor lorem, venenatis sit amet mauris non, semper commodo est. Sed eu porttitor metus, non lacinia enim.",
+        "mainDoctorId": 1,
+        "roomNumber": "AC56",
+        "date": "2005-08-25",
+        "otherDoctorsId": [
+            2,
+            3
+        ],
+        "status": 3
+    },
+    {
+        "id": 2,
+        "title": "Personal report",
+        "type": 5,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tortor lorem, venenatis sit amet mauris non, semper commodo est. Sed eu porttitor metus, non lacinia enim.",
+        "mainDoctorId": 1,
+        "roomNumber": "AC56",
+        "date": "2018-01-13",
+        "otherDoctorsId": [
+        ],
+        "status": 2
+    },
+    {
+        "id": 3,
+        "title": "Left knee CT scan",
+        "type": 4,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tortor lorem, venenatis sit amet mauris non, semper commodo est. Sed eu porttitor metus, non lacinia enim.",
+        "mainDoctorId": 2,
+        "roomNumber": "AC66",
+        "date": "2020-04-04",
+        "otherDoctorsId": [
+        ],
+        "status": 2
+    },
+    {
+        "id": 4,
+        "title": "Right ACL knee surgery",
+        "type": 1,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tortor lorem, venenatis sit amet mauris non, semper commodo est. Sed eu porttitor metus, non lacinia enim.",
+        "mainDoctorId": 10,
+        "roomNumber": "AB56",
+        "date": "2020-04-04",
+        "otherDoctorsId": [
+            1,
+            11
+        ],
+        "status": 1
+    },
+    {
+        "id": 5,
+        "title": "Heart surgery",
+        "type": 1,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tortor lorem, venenatis sit amet mauris non, semper commodo est. Sed eu porttitor metus, non lacinia enim.",
+        "mainDoctorId": 4,
+        "roomNumber": "AD56",
+        "date": "2020-04-04",
+        "otherDoctorsId": [
+            2,
+            6
+        ],
+        "status": 4
+    },
+    {
+        "id": 6,
+        "title": "Whole body CT scan",
+        "type": 4,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tortor lorem, venenatis sit amet mauris non, semper commodo est. Sed eu porttitor metus, non lacinia enim.",
+        "mainDoctorId": 2,
+        "roomNumber": "AC57",
+        "date": "2020-04-04",
+        "otherDoctorsId": [
+        ],
+        "status": 2
+    },
+    {
+        "id": 7,
+        "title": "Breast biopsy surgery",
+        "type": 1,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tortor lorem, venenatis sit amet mauris non, semper commodo est. Sed eu porttitor metus, non lacinia enim.",
+        "mainDoctorId": 1,
+        "roomNumber": "AD56",
+        "date": "2020-04-04",
+        "otherDoctorsId": [
+            7,
+            13
+        ],
+        "status": 3
+    },
+    {
+        "id": 8,
+        "title": "Cataract surgery",
+        "type": 1,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tortor lorem, venenatis sit amet mauris non, semper commodo est. Sed eu porttitor metus, non lacinia enim.",
+        "mainDoctorId": 1,
+        "roomNumber": "AL59",
+        "date": "2017-04-17",
+        "otherDoctorsId": [
+            7,
+            11
+        ],
+        "status": 2
+    },
+    {
+        "id": 9,
+        "title": "Personal reports",
+        "type": 5,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tortor lorem, venenatis sit amet mauris non, semper commodo est. Sed eu porttitor metus, non lacinia enim.",
+        "mainDoctorId": 6,
+        "roomNumber": "AC56",
+        "date": "2019-02-01",
+        "otherDoctorsId": [
+        ],
+        "status": 2
+    },
+    {
+        "id": 10,
+        "title": "Pankreas surgery",
+        "type": 1,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tortor lorem, venenatis sit amet mauris non, semper commodo est. Sed eu porttitor metus, non lacinia enim.",
+        "mainDoctorId": 4,
+        "roomNumber": "AC46",
+        "date": "2005-10-30",
+        "otherDoctorsId": [
+            2,
+            9
+        ],
+        "status": 1
+    }
+]

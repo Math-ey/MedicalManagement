@@ -1,0 +1,31 @@
+table {
+  width: 100%;
+}
+
+.status-toggle-button {
+  margin: 10px;
+}
+
+.mat-column-photo {
+  width: 200px;
+}
+
+.mat-column-fullname {
+  width: 200px;
+}
+
+.mat-button-left-bottom-corner {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+}
+
+.add-icon {
+  font-size: 40px;
+  color: green;
+}
+
+.mat-row:hover {
+  background-color: #dddddd;
+  cursor: pointer;
+}

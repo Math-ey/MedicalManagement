@@ -1,0 +1,1055 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "title" : "Medical managment API",
+    "description" : "Medical managment API for hospital staff and treatments managment",
+    "contact" : {
+      "email" : "matej.mikus96@gmail.com"
+    },
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version" : "1.0.0"
+  },
+  "servers" : [ {
+    "url" : "https://virtserver.swaggerhub.com/NonActive/MedicalManagment/1.0.0",
+    "description" : "SwaggerHub API Auto Mocking"
+  } ],
+  "tags" : [ {
+    "name" : "admins",
+    "description" : "Secured Admin-only calls"
+  }, {
+    "name" : "developers",
+    "description" : "Operations available to regular developers"
+  } ],
+  "paths" : {
+    "/employee-list" : {
+      "get" : {
+        "tags" : [ "admins" ],
+        "summary" : "Provides employee list of the hospital",
+        "description" : "You can retrieve employee list of the hospital using pagination.",
+        "operationId" : "getAmbulanceDetails",
+        "parameters" : [ {
+          "name" : "query",
+          "in" : "query",
+          "description" : "The query to search employees by first name and last name.\n",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "The **maximum** number of results per page.\n**If ommitted**, `limit` is equal to 20 by default.\n",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Page is an offset for the employee list pagination. It is multipied with `limit` param to obtain start index.\n",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "array of the waiting list entries",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/EmployeeList"
+                },
+                "examples" : {
+                  "response" : {
+                    "value" : {
+                      "employeeList" : [ {
+                        "id" : 1,
+                        "role" : "surgeon",
+                        "personal" : {
+                          "gender" : "male",
+                          "firstName" : "John",
+                          "lastName" : "Antal",
+                          "birthDate" : "1995-05-05",
+                          "birthPlace" : "Rimavska Sobota",
+                          "citizenShip" : "Slovak",
+                          "maritalStatus" : "single",
+                          "picture" : "https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat.png",
+                          "street" : "Zelezniciarska",
+                          "houseNumber" : "500",
+                          "city" : "Rimavska Sobota",
+                          "state" : "Slovakia",
+                          "zipCode" : "12345",
+                          "email" : "jano@email.com",
+                          "phone" : "091878945612"
+                        },
+                        "education" : {
+                          "highestEducationalLevelAttained" : 3,
+                          "degree" : "Ing",
+                          "schools" : [ {
+                            "schoolName" : "FIIT",
+                            "schoolAddress" : "Ilkovicova 600, Bratislava",
+                            "schoolSpecialisation" : "Machine Learning",
+                            "attendedSchoolFromYear" : "2015",
+                            "attendedSchoolToYear" : "2020"
+                          } ]
+                        },
+                        "workExperience" : {
+                          "jobs" : [ {
+                            "companyName" : "RS NET",
+                            "companyAddress" : "Kvietkova 9, Zvolen",
+                            "companyPosition" : "Koooder",
+                            "workDescription" : "He coded a coded a lot",
+                            "hiredInCompanyFromDate" : "2019-06-06",
+                            "hiredInCompanyToDate" : "2020-01-01"
+                          } ]
+                        }
+                      } ],
+                      "maritalStatus" : [ {
+                        "id" : 1,
+                        "value" : "single"
+                      }, {
+                        "id" : 2,
+                        "value" : "married"
+                      }, {
+                        "id" : 3,
+                        "value" : "widowed"
+                      }, {
+                        "id" : 4,
+                        "value" : "divorced"
+                      }, {
+                        "id" : 5,
+                        "value" : "separated"
+                      } ],
+                      "roles" : [ {
+                        "id" : 1,
+                        "value" : "consultant"
+                      }, {
+                        "id" : 2,
+                        "value" : "dietician"
+                      }, {
+                        "id" : 3,
+                        "value" : "physiotherapist"
+                      }, {
+                        "id" : 4,
+                        "value" : "intern"
+                      }, {
+                        "id" : 5,
+                        "value" : "surgeon"
+                      } ],
+                      "educationalLevel" : [ {
+                        "id" : 1,
+                        "value" : "High School Diplom"
+                      }, {
+                        "id" : 2,
+                        "value" : "2 Year Certificate Course / Vocational Course"
+                      }, {
+                        "id" : 3,
+                        "value" : "Bachelor's degree"
+                      }, {
+                        "id" : 4,
+                        "value" : "Master's degree"
+                      }, {
+                        "id" : 5,
+                        "value" : "Doctorate"
+                      } ],
+                      "total" : 150
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/employee" : {
+      "post" : {
+        "tags" : [ "admins" ],
+        "summary" : "Creates new employee",
+        "description" : "Stores new employee",
+        "operationId" : "createEmployee",
+        "requestBody" : {
+          "description" : "Employee model to create",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Employee"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "employee created"
+          },
+          "400" : {
+            "description" : "employee object invalid"
+          },
+          "409" : {
+            "description" : "an existing employee already exists"
+          }
+        }
+      }
+    },
+    "/employee/{employeeId}" : {
+      "put" : {
+        "tags" : [ "admins" ],
+        "summary" : "Updates existing employee",
+        "operationId" : "updateEmployee",
+        "parameters" : [ {
+          "name" : "employeeId",
+          "in" : "path",
+          "description" : "pass the id of the particular employee",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "Employee model to update",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Employee"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "employee updated"
+          },
+          "400" : {
+            "description" : "employee object invalid"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "admins" ],
+        "summary" : "Deletes specific employee",
+        "operationId" : "deleteEmployee Use this method to delete the specific employee",
+        "parameters" : [ {
+          "name" : "employeeId",
+          "in" : "path",
+          "description" : "pass the id of the particular employee",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Item deleted"
+          },
+          "404" : {
+            "description" : "Employee with such ID does not exists"
+          }
+        }
+      }
+    },
+    "/treatment-list" : {
+      "get" : {
+        "tags" : [ "admins" ],
+        "summary" : "Provides treatment list of the hospital",
+        "description" : "Retrieves complete treatment list of hospital\n",
+        "operationId" : "getAllTreatments",
+        "responses" : {
+          "200" : {
+            "description" : "array of the waiting list entries",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/TreatmentList"
+                },
+                "examples" : {
+                  "response" : {
+                    "value" : {
+                      "treatmentList" : [ {
+                        "id" : 1,
+                        "title" : "ACL Left Knee Surgery",
+                        "type" : 2,
+                        "description" : "Description of the ACL Left Knee Surgery",
+                        "mainDocotrId" : 1,
+                        "mainDoctorObject" : {
+                          "id" : 1,
+                          "firstName" : "David",
+                          "lastName" : "Hops",
+                          "degree" : "Ing"
+                        },
+                        "room" : "AC56",
+                        "date" : "2020-04-04",
+                        "otherDoctorsId" : [ 2 ],
+                        "otherDoctorsObject" : [ {
+                          "id" : 2,
+                          "firstName" : "John",
+                          "lastName" : "Antal",
+                          "degree" : "Ing"
+                        } ],
+                        "status" : 2
+                      } ],
+                      "types" : [ {
+                        "id" : 1,
+                        "value" : "surgery",
+                        "typicalDurationMinutes" : 150
+                      }, {
+                        "id" : 2,
+                        "value" : "folllowup",
+                        "typicalDurationMinutes" : 30
+                      }, {
+                        "id" : 3,
+                        "value" : "blood-test",
+                        "typicalDurationMinutes" : 10
+                      }, {
+                        "id" : 4,
+                        "value" : "CT scan",
+                        "typicalDurationMinutes" : 25
+                      }, {
+                        "id" : 5,
+                        "value" : "Administration",
+                        "typicalDurationMinutes" : 10
+                      } ],
+                      "status" : [ {
+                        "id" : 1,
+                        "value" : "in progress"
+                      }, {
+                        "id" : 2,
+                        "value" : "completed"
+                      }, {
+                        "id" : 3,
+                        "value" : "cancelled"
+                      }, {
+                        "id" : 4,
+                        "value" : "scheduled"
+                      } ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/treatment" : {
+      "post" : {
+        "tags" : [ "admins" ],
+        "summary" : "Creates new treatment",
+        "description" : "Stores new treatment",
+        "operationId" : "createTreatment",
+        "requestBody" : {
+          "description" : "Treatment model to create",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Treatment"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "treatment created"
+          },
+          "400" : {
+            "description" : "treatment object invalid"
+          },
+          "409" : {
+            "description" : "the provided treatment already exists"
+          }
+        }
+      }
+    },
+    "/treatment/{treatmentId}" : {
+      "put" : {
+        "tags" : [ "admins" ],
+        "summary" : "Updates existing treatment",
+        "operationId" : "updateTreatment",
+        "parameters" : [ {
+          "name" : "treatmentId",
+          "in" : "path",
+          "description" : "pass the id of the particular treatment",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "Treatment model to update",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Treatment"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "treatment updated"
+          },
+          "400" : {
+            "description" : "treatment object invalid"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "admins" ],
+        "summary" : "Deletes specific treatment",
+        "operationId" : "deleteTreatment Use this method to delete the specific treatment",
+        "parameters" : [ {
+          "name" : "treatmentId",
+          "in" : "path",
+          "description" : "pass the id of the particular treatment",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Item deleted"
+          },
+          "404" : {
+            "description" : "Treatment with such ID does not exists"
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "EmployeeList" : {
+        "required" : [ "employeeList", "total" ],
+        "type" : "object",
+        "properties" : {
+          "employeeList" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Employee"
+            }
+          },
+          "maritalStatus" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/EnumModel"
+            }
+          },
+          "roles" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/EnumModel"
+            }
+          },
+          "educationalLevel" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/EnumModel"
+            }
+          },
+          "total" : {
+            "type" : "number",
+            "example" : 105
+          }
+        },
+        "example" : {
+          "total" : 105,
+          "employeeList" : [ {
+            "education" : {
+              "schools" : [ null, null ],
+              "highestEducationalLevelAttained" : 1,
+              "degree" : "MUDr."
+            },
+            "role" : 2,
+            "workExperience" : {
+              "jobs" : [ {
+                "companyPosition" : "Junior developer",
+                "companyName" : "Siemens Healthineers",
+                "companyAddress" : "5101 Westinghouse Blvd, Charlotte, NC 28273, United States",
+                "workDescription" : "Devops, Testing, Programming",
+                "hiredInCompanyToDate" : "2019-06-10T00:00:00.000+0000",
+                "hiredInCompanyFromDate" : "2017-06-06T00:00:00.000+0000"
+              }, {
+                "companyPosition" : "Junior developer",
+                "companyName" : "Siemens Healthineers",
+                "companyAddress" : "5101 Westinghouse Blvd, Charlotte, NC 28273, United States",
+                "workDescription" : "Devops, Testing, Programming",
+                "hiredInCompanyToDate" : "2019-06-10T00:00:00.000+0000",
+                "hiredInCompanyFromDate" : "2017-06-06T00:00:00.000+0000"
+              } ]
+            },
+            "personal" : {
+              "lastName" : "Antal",
+              "zipCode" : "123456",
+              "gender" : "male",
+              "city" : "Montgomery",
+              "citizenship" : "United states",
+              "houseNumber" : "25/526",
+              "birthDate" : "2017-03-05T00:00:00.000+0000",
+              "picture" : "http://test-picture.com/picture.jpg",
+              "firstName" : "John",
+              "birthPlace" : "Alabama",
+              "phone" : "09101235678",
+              "street" : "Montgomery street",
+              "state" : "Alabama",
+              "maritalStatus" : "divorced",
+              "email" : "john.antal@example.com"
+            },
+            "id" : 5
+          }, {
+            "education" : {
+              "schools" : [ null, null ],
+              "highestEducationalLevelAttained" : 1,
+              "degree" : "MUDr."
+            },
+            "role" : 2,
+            "workExperience" : {
+              "jobs" : [ {
+                "companyPosition" : "Junior developer",
+                "companyName" : "Siemens Healthineers",
+                "companyAddress" : "5101 Westinghouse Blvd, Charlotte, NC 28273, United States",
+                "workDescription" : "Devops, Testing, Programming",
+                "hiredInCompanyToDate" : "2019-06-10T00:00:00.000+0000",
+                "hiredInCompanyFromDate" : "2017-06-06T00:00:00.000+0000"
+              }, {
+                "companyPosition" : "Junior developer",
+                "companyName" : "Siemens Healthineers",
+                "companyAddress" : "5101 Westinghouse Blvd, Charlotte, NC 28273, United States",
+                "workDescription" : "Devops, Testing, Programming",
+                "hiredInCompanyToDate" : "2019-06-10T00:00:00.000+0000",
+                "hiredInCompanyFromDate" : "2017-06-06T00:00:00.000+0000"
+              } ]
+            },
+            "personal" : {
+              "lastName" : "Antal",
+              "zipCode" : "123456",
+              "gender" : "male",
+              "city" : "Montgomery",
+              "citizenship" : "United states",
+              "houseNumber" : "25/526",
+              "birthDate" : "2017-03-05T00:00:00.000+0000",
+              "picture" : "http://test-picture.com/picture.jpg",
+              "firstName" : "John",
+              "birthPlace" : "Alabama",
+              "phone" : "09101235678",
+              "street" : "Montgomery street",
+              "state" : "Alabama",
+              "maritalStatus" : "divorced",
+              "email" : "john.antal@example.com"
+            },
+            "id" : 5
+          } ],
+          "roles" : [ null, null ],
+          "maritalStatus" : [ {
+            "id" : 1,
+            "value" : "Some value"
+          }, {
+            "id" : 1,
+            "value" : "Some value"
+          } ],
+          "educationalLevel" : [ null, null ]
+        }
+      },
+      "Employee" : {
+        "required" : [ "education", "id", "personal", "role", "workExperience" ],
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "number",
+            "example" : 5
+          },
+          "personal" : {
+            "$ref" : "#/components/schemas/Personal"
+          },
+          "education" : {
+            "$ref" : "#/components/schemas/Education"
+          },
+          "workExperience" : {
+            "$ref" : "#/components/schemas/WorkExperience"
+          },
+          "role" : {
+            "type" : "number",
+            "example" : 2
+          }
+        },
+        "example" : {
+          "education" : {
+            "schools" : [ null, null ],
+            "highestEducationalLevelAttained" : 1,
+            "degree" : "MUDr."
+          },
+          "role" : 2,
+          "workExperience" : {
+            "jobs" : [ {
+              "companyPosition" : "Junior developer",
+              "companyName" : "Siemens Healthineers",
+              "companyAddress" : "5101 Westinghouse Blvd, Charlotte, NC 28273, United States",
+              "workDescription" : "Devops, Testing, Programming",
+              "hiredInCompanyToDate" : "2019-06-10T00:00:00.000+0000",
+              "hiredInCompanyFromDate" : "2017-06-06T00:00:00.000+0000"
+            }, {
+              "companyPosition" : "Junior developer",
+              "companyName" : "Siemens Healthineers",
+              "companyAddress" : "5101 Westinghouse Blvd, Charlotte, NC 28273, United States",
+              "workDescription" : "Devops, Testing, Programming",
+              "hiredInCompanyToDate" : "2019-06-10T00:00:00.000+0000",
+              "hiredInCompanyFromDate" : "2017-06-06T00:00:00.000+0000"
+            } ]
+          },
+          "personal" : {
+            "lastName" : "Antal",
+            "zipCode" : "123456",
+            "gender" : "male",
+            "city" : "Montgomery",
+            "citizenship" : "United states",
+            "houseNumber" : "25/526",
+            "birthDate" : "2017-03-05T00:00:00.000+0000",
+            "picture" : "http://test-picture.com/picture.jpg",
+            "firstName" : "John",
+            "birthPlace" : "Alabama",
+            "phone" : "09101235678",
+            "street" : "Montgomery street",
+            "state" : "Alabama",
+            "maritalStatus" : "divorced",
+            "email" : "john.antal@example.com"
+          },
+          "id" : 5
+        }
+      },
+      "Personal" : {
+        "required" : [ "birthDate", "birthPlace", "citizenship", "city", "email", "firstName", "gender", "houseNumber", "lastName", "maritalStatus", "phone", "picture", "state", "street", "zipCode" ],
+        "type" : "object",
+        "properties" : {
+          "gender" : {
+            "type" : "string",
+            "example" : "male"
+          },
+          "firstName" : {
+            "type" : "string",
+            "example" : "John"
+          },
+          "lastName" : {
+            "type" : "string",
+            "example" : "Antal"
+          },
+          "birthDate" : {
+            "type" : "string",
+            "format" : "date",
+            "example" : "2017-03-05"
+          },
+          "birthPlace" : {
+            "type" : "string",
+            "example" : "Alabama"
+          },
+          "citizenship" : {
+            "type" : "string",
+            "example" : "United states"
+          },
+          "maritalStatus" : {
+            "type" : "string",
+            "example" : "divorced"
+          },
+          "picture" : {
+            "type" : "string",
+            "example" : "http://test-picture.com/picture.jpg"
+          },
+          "street" : {
+            "type" : "string",
+            "example" : "Montgomery street"
+          },
+          "houseNumber" : {
+            "type" : "string",
+            "example" : "25/526"
+          },
+          "city" : {
+            "type" : "string",
+            "example" : "Montgomery"
+          },
+          "state" : {
+            "type" : "string",
+            "example" : "Alabama"
+          },
+          "zipCode" : {
+            "type" : "string",
+            "example" : "123456"
+          },
+          "email" : {
+            "type" : "string",
+            "example" : "john.antal@example.com"
+          },
+          "phone" : {
+            "type" : "string",
+            "example" : "09101235678"
+          }
+        },
+        "example" : {
+          "lastName" : "Antal",
+          "zipCode" : "123456",
+          "gender" : "male",
+          "city" : "Montgomery",
+          "citizenship" : "United states",
+          "houseNumber" : "25/526",
+          "birthDate" : "2017-03-05T00:00:00.000+0000",
+          "picture" : "http://test-picture.com/picture.jpg",
+          "firstName" : "John",
+          "birthPlace" : "Alabama",
+          "phone" : "09101235678",
+          "street" : "Montgomery street",
+          "state" : "Alabama",
+          "maritalStatus" : "divorced",
+          "email" : "john.antal@example.com"
+        }
+      },
+      "Education" : {
+        "required" : [ "degree", "highestEducationalLevelAttained", "schools" ],
+        "type" : "object",
+        "properties" : {
+          "highestEducationalLevelAttained" : {
+            "type" : "number",
+            "example" : 1
+          },
+          "degree" : {
+            "type" : "string",
+            "example" : "MUDr."
+          },
+          "schools" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Employee"
+            }
+          }
+        },
+        "example" : {
+          "schools" : [ null, null ],
+          "highestEducationalLevelAttained" : 1,
+          "degree" : "MUDr."
+        }
+      },
+      "WorkExperience" : {
+        "required" : [ "jobs" ],
+        "type" : "object",
+        "properties" : {
+          "jobs" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/JobModel"
+            }
+          }
+        },
+        "example" : {
+          "jobs" : [ {
+            "companyPosition" : "Junior developer",
+            "companyName" : "Siemens Healthineers",
+            "companyAddress" : "5101 Westinghouse Blvd, Charlotte, NC 28273, United States",
+            "workDescription" : "Devops, Testing, Programming",
+            "hiredInCompanyToDate" : "2019-06-10T00:00:00.000+0000",
+            "hiredInCompanyFromDate" : "2017-06-06T00:00:00.000+0000"
+          }, {
+            "companyPosition" : "Junior developer",
+            "companyName" : "Siemens Healthineers",
+            "companyAddress" : "5101 Westinghouse Blvd, Charlotte, NC 28273, United States",
+            "workDescription" : "Devops, Testing, Programming",
+            "hiredInCompanyToDate" : "2019-06-10T00:00:00.000+0000",
+            "hiredInCompanyFromDate" : "2017-06-06T00:00:00.000+0000"
+          } ]
+        }
+      },
+      "JobModel" : {
+        "required" : [ "companyAddress", "companyName", "companyPosition", "hiredInCompanyFromDate", "hiredInCompanyToDate", "workDescription" ],
+        "type" : "object",
+        "properties" : {
+          "companyName" : {
+            "type" : "string",
+            "example" : "Siemens Healthineers"
+          },
+          "companyAddress" : {
+            "type" : "string",
+            "example" : "5101 Westinghouse Blvd, Charlotte, NC 28273, United States"
+          },
+          "companyPosition" : {
+            "type" : "string",
+            "example" : "Junior developer"
+          },
+          "workDescription" : {
+            "type" : "string",
+            "example" : "Devops, Testing, Programming"
+          },
+          "hiredInCompanyFromDate" : {
+            "type" : "string",
+            "format" : "date",
+            "example" : "2017-06-06"
+          },
+          "hiredInCompanyToDate" : {
+            "type" : "string",
+            "format" : "date",
+            "example" : "2019-06-10"
+          }
+        },
+        "example" : {
+          "companyPosition" : "Junior developer",
+          "companyName" : "Siemens Healthineers",
+          "companyAddress" : "5101 Westinghouse Blvd, Charlotte, NC 28273, United States",
+          "workDescription" : "Devops, Testing, Programming",
+          "hiredInCompanyToDate" : "2019-06-10T00:00:00.000+0000",
+          "hiredInCompanyFromDate" : "2017-06-06T00:00:00.000+0000"
+        }
+      },
+      "SimpleEmployee" : {
+        "required" : [ "degree", "firstName", "id", "lastName" ],
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "number",
+            "example" : 1
+          },
+          "firstName" : {
+            "type" : "string",
+            "example" : "John"
+          },
+          "lastName" : {
+            "type" : "string",
+            "example" : "Antal"
+          },
+          "degree" : {
+            "type" : "string",
+            "example" : "MUDr."
+          }
+        },
+        "example" : {
+          "firstName" : "John",
+          "lastName" : "Antal",
+          "degree" : "MUDr.",
+          "id" : 1
+        }
+      },
+      "TreatmentList" : {
+        "required" : [ "treatmentList" ],
+        "type" : "object",
+        "properties" : {
+          "treatmentList" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Treatment"
+            }
+          },
+          "types" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/EnumModel"
+            }
+          },
+          "status" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/EnumModel"
+            }
+          }
+        },
+        "example" : {
+          "types" : [ {
+            "id" : 1,
+            "value" : "Some value"
+          }, {
+            "id" : 1,
+            "value" : "Some value"
+          } ],
+          "treatmentList" : [ {
+            "date" : "2017-07-21T17:32:28Z",
+            "otherDoctorsObject" : [ {
+              "id" : 2,
+              "firstName" : "Mark",
+              "lastName" : "Zuckerberg",
+              "degree" : "MUDr"
+            }, {
+              "id" : 3,
+              "firstName" : "Mocin",
+              "lastName" : "Gejbr",
+              "degree" : "MUDr"
+            } ],
+            "mainDoctorObject" : {
+              "firstName" : "John",
+              "lastName" : "Antal",
+              "degree" : "MUDr.",
+              "id" : 1
+            },
+            "roomNumber" : "527/8 surgery room",
+            "description" : "Lorem ipsum and so on",
+            "id" : 596,
+            "title" : "Left knee surgerys",
+            "type" : 5,
+            "otherDoctrsId" : [ 2, 3 ],
+            "mainDoctorId" : 1
+          }, {
+            "date" : "2017-07-21T17:32:28Z",
+            "otherDoctorsObject" : [ {
+              "id" : 2,
+              "firstName" : "Mark",
+              "lastName" : "Zuckerberg",
+              "degree" : "MUDr"
+            }, {
+              "id" : 3,
+              "firstName" : "Mocin",
+              "lastName" : "Gejbr",
+              "degree" : "MUDr"
+            } ],
+            "mainDoctorObject" : {
+              "firstName" : "John",
+              "lastName" : "Antal",
+              "degree" : "MUDr.",
+              "id" : 1
+            },
+            "roomNumber" : "527/8 surgery room",
+            "description" : "Lorem ipsum and so on",
+            "id" : 596,
+            "title" : "Left knee surgerys",
+            "type" : 5,
+            "otherDoctrsId" : [ 2, 3 ],
+            "mainDoctorId" : 1
+          } ],
+          "status" : [ null, null ]
+        }
+      },
+      "Treatment" : {
+        "required" : [ "date", "description", "id", "mainDoctorId", "otherDoctorsId", "room", "title", "type" ],
+        "properties" : {
+          "id" : {
+            "type" : "number",
+            "example" : 596
+          },
+          "title" : {
+            "type" : "string",
+            "example" : "Left knee surgerys"
+          },
+          "type" : {
+            "type" : "number",
+            "example" : 5
+          },
+          "description" : {
+            "type" : "string",
+            "example" : "Lorem ipsum and so on"
+          },
+          "mainDoctorId" : {
+            "type" : "number",
+            "example" : 1
+          },
+          "mainDoctorObject" : {
+            "$ref" : "#/components/schemas/SimpleEmployee"
+          },
+          "otherDoctrsId" : {
+            "type" : "array",
+            "example" : [ 2, 3 ],
+            "items" : {
+              "type" : "number"
+            }
+          },
+          "otherDoctorsObject" : {
+            "type" : "array",
+            "example" : [ {
+              "id" : 2,
+              "firstName" : "Mark",
+              "lastName" : "Zuckerberg",
+              "degree" : "MUDr"
+            }, {
+              "id" : 3,
+              "firstName" : "Mocin",
+              "lastName" : "Gejbr",
+              "degree" : "MUDr"
+            } ],
+            "items" : {
+              "type" : "object"
+            }
+          },
+          "roomNumber" : {
+            "type" : "string",
+            "example" : "527/8 surgery room"
+          },
+          "date" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2017-07-21T17:32:28Z"
+          }
+        },
+        "example" : {
+          "date" : "2017-07-21T17:32:28Z",
+          "otherDoctorsObject" : [ {
+            "id" : 2,
+            "firstName" : "Mark",
+            "lastName" : "Zuckerberg",
+            "degree" : "MUDr"
+          }, {
+            "id" : 3,
+            "firstName" : "Mocin",
+            "lastName" : "Gejbr",
+            "degree" : "MUDr"
+          } ],
+          "mainDoctorObject" : {
+            "firstName" : "John",
+            "lastName" : "Antal",
+            "degree" : "MUDr.",
+            "id" : 1
+          },
+          "roomNumber" : "527/8 surgery room",
+          "description" : "Lorem ipsum and so on",
+          "id" : 596,
+          "title" : "Left knee surgerys",
+          "type" : 5,
+          "otherDoctrsId" : [ 2, 3 ],
+          "mainDoctorId" : 1
+        }
+      },
+      "EnumModel" : {
+        "required" : [ "id", "value" ],
+        "properties" : {
+          "id" : {
+            "type" : "number",
+            "example" : 1
+          },
+          "value" : {
+            "type" : "string",
+            "example" : "Some value"
+          }
+        },
+        "example" : {
+          "id" : 1,
+          "value" : "Some value"
+        }
+      },
+      "Error" : {
+        "type" : "object",
+        "properties" : {
+          "error" : {
+            "type" : "string",
+            "example" : "an exemplary error message."
+          }
+        }
+      }
+    }
+  }
+}

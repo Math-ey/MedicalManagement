@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "value": "consultant"
+    },
+    {
+        "id": 2,
+        "value": "dietician"
+    },
+    {
+        "id": 3,
+        "value": "physiotherapist"
+    },
+    {
+        "id": 4,
+        "value": "intern"
+    },
+    {
+        "id": 5,
+        "value": "surgeon"
+    }
+]

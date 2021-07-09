@@ -1,0 +1,34 @@
+<div class="sidebar-header">
+  <a class="branding" routerLink="/">
+    <mat-icon class="branding-logo">local_hospital</mat-icon>
+    <span class="branding-name">Medical Management</span>
+  </a>
+</div>
+<div class="sidebar-main">
+  <ul class="sidemenu">
+    <li class="sidemenu-item" routerLinkActive="active">
+      <a class="sidemenu-link" [routerLink]="['/dashboard']">
+        <mat-icon class="menu-icon">dashboard</mat-icon>
+        <span class="menu-name">Dashboard</span>
+      </a>
+    </li>
+    <li class="sidemenu-item" routerLinkActive="active">
+      <a class="sidemenu-link" [routerLink]="['/employee']">
+        <mat-icon class="menu-icon">person</mat-icon>
+        <span class="menu-name">Employees</span>
+      </a>
+    </li>
+    <li class="sidemenu-item" routerLinkActive="active">
+      <a class="sidemenu-link" [routerLink]="['/treatment']">
+        <mat-icon class="menu-icon">create</mat-icon>
+        <span class="menu-name">Treatments</span>
+      </a>
+    </li>
+    <li class="sidemenu-item" routerLinkActive="active">
+      <a class="sidemenu-link"  href="https://medikal-api-gateway-app.azurewebsites.net/schedule/">
+        <mat-icon class="menu-icon">house</mat-icon>
+        <span class="menu-name">Schedule</span>
+      </a>
+    </li>
+  </ul>
+</div>

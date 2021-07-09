@@ -1,0 +1,45 @@
+input:disabled {
+    color:rgba(0,0,0,.87);
+}
+
+::ng-deep.mat-select-disabled .mat-select-value {
+    color: rgba(0,0,0,.87);
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+mat-list {
+    flex-grow: 1;
+    max-height: 150px;
+    height: 150px;
+    overflow: auto;
+}
+
+mat-chip {
+    justify-content: space-between;
+    width: 100%;
+}
+
+textarea {
+    max-height: 400px;
+    min-height: 400px;
+}
+
+.page-content {
+    padding-top: 50px;
+}
+
+.button-float-right {
+    float: right;
+    position: relative;
+}
+
+.other-doctors-chip-list {
+    min-height: 180px;
+}
+
+.main-doctor-input {
+    height: 27px;
+}

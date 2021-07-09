@@ -1,0 +1,11 @@
+input:disabled {
+    color:rgba(0,0,0,.87);
+}
+
+::ng-deep.mat-select-disabled .mat-select-value {
+    color: rgba(0,0,0,.87);
+}
+
+mat-form-field {
+    width: 100%;
+}

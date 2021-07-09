@@ -1,0 +1,149 @@
+<form [formGroup]="form">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div formGroupName="personal">
+                    <mat-form-field class="example-full-width" appearance="standard">
+                        <mat-label>First name</mat-label>
+                        <input matInput type="text" formControlName="firstName" required>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div formGroupName="personal">
+                    <mat-form-field class="example-full-width" appearance="standard">
+                        <mat-label>Last name</mat-label>
+                        <input matInput type="text" formControlName="lastName" required>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-md-4">
+               <mat-form-field class="example-full-width" appearance="standard">
+                    <mat-label>Role</mat-label>
+                     <mat-select formControlName="role" required>
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let role of roles" [value]="role.id">
+                            {{role.value}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-4">
+                <div formGroupName="personal">
+                   <mat-form-field class="example-full-width" appearance="standard">
+                        <mat-label>Gender</mat-label>
+                         <mat-select formControlName="gender" required>
+                            <mat-option>None</mat-option>
+                            <mat-option *ngFor="let gender of genders" [value]="gender.id">
+                                {{gender.value}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div formGroupName="personal">
+                    <mat-form-field class="example-full-width" appearance="standard">
+                        <mat-label>Date of birth</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="birthDate" required>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div formGroupName="personal">
+                    <mat-form-field class="example-full-width" appearance="standard">
+                        <mat-label>Place of birth</mat-label>
+                        <input matInput type="text" formControlName="birthPlace" required>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div formGroupName="personal">
+                    <mat-form-field class="example-full-width" appearance="standard">
+                        <mat-label>Citizenship</mat-label>
+                        <input matInput type="text" formControlName="citizenship" required>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div formGroupName="personal">
+                    <mat-form-field class="example-full-width" appearance="standard">
+                        <mat-label>Marital status</mat-label>
+                        <mat-select formControlName="maritalStatus" required>
+                            <mat-option>None</mat-option>
+                            <mat-option *ngFor="let mar of maritalStatus" [value]="mar.id">
+                                {{mar.value}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-8">
+                <div formGroupName="personal">
+
+                    <mat-form-field class="example-full-width" appearance="standard">
+                        <mat-label>Street</mat-label>
+                        <input matInput type="text" formControlName="street" required>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div formGroupName="personal">
+
+                    <mat-form-field class="example-full-width" appearance="standard">
+                        <mat-label>House number</mat-label>
+                        <input matInput type="text" formControlName="houseNumber" required>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div formGroupName="personal">
+                    <mat-form-field class="example-full-width" appearance="standard">
+                        <mat-label>City</mat-label>
+                        <input matInput type="text" formControlName="city" required>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div formGroupName="personal">
+                    <mat-form-field class="example-full-width" appearance="standard">
+                        <mat-label>State</mat-label>
+                        <input matInput type="text" formControlName="state" required>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div formGroupName="personal">
+                    <mat-form-field class="example-full-width" appearance="standard">
+                        <mat-label>Zip code</mat-label>
+                        <input matInput type="text" formControlName="zipCode" required>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div formGroupName="personal">
+                    <mat-form-field class="example-full-width" appearance="standard">
+                        <mat-label>Phone number</mat-label>
+                        <input matInput type="text" formControlName="phone" required>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div formGroupName="personal">
+                    <mat-form-field class="example-full-width" appearance="standard">
+                        <mat-label>Email</mat-label>
+                        <input matInput type="text" formControlName="email" required>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

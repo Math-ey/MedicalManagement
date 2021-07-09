@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "value": "surgery"
+    },
+    {
+        "id": 2,
+        "value": "folllowup"
+    },
+    {
+        "id": 3,
+        "value": "blood-test"
+    },
+    {
+        "id": 4,
+        "value": "CT scan"
+    },
+    {
+        "id": 5,
+        "value": "Administration"
+    }
+]

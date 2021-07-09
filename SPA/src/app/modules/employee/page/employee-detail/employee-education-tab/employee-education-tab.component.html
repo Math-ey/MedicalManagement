@@ -1,0 +1,62 @@
+<form [formGroup]="form">
+    <div class="container" formGroupName="education">
+        <div class="row">
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="standard">
+                    <mat-label>Degree</mat-label>
+                    <input matInput formControlName="degree" required>
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width" appearance="standard">
+                    <mat-label>Highest level attained</mat-label>
+                    <mat-select formControlName="highestEducationalLevelAttained" required>
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let level of educationalLevels" [value]="level.id">
+                            {{level.value}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div formArrayName="schools">
+                <div *ngFor="let school of schools().controls;let i = index">
+                    <div [formGroupName]="i">
+                        <div class="row container">
+                            <div class="col-md-12">
+                                <mat-form-field class="example-full-width" appearance="standard">
+                                    <mat-label>School Name</mat-label>
+                                    <input matInput formControlName="schoolName" required>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-12">
+                                <mat-form-field class="example-full-width" appearance="standard">
+                                    <mat-label>School Address</mat-label>
+                                    <input matInput formControlName="schoolAddress" required>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-4">
+                                <mat-form-field class="example-full-width" appearance="standard">
+                                    <mat-label>Specialisation</mat-label>
+                                    <input matInput formControlName="schoolSpecialisation" required>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-4">
+                                <mat-form-field class="example-full-width" appearance="standard">
+                                    <mat-label>Attained from Year</mat-label>
+                                    <input matInput formControlName="attendFromYear" required>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-4">
+                                <mat-form-field class="example-full-width" appearance="standard">
+                                    <mat-label>Attained to year</mat-label>
+                                    <input matInput formControlName="attendToYear" required> 
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

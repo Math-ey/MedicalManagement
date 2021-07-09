@@ -1,0 +1,55 @@
+<div class="container">
+    <mat-card>
+        <form [formGroup]="employeeForm">
+            <button mat-mini-fab color="primary" type="button" [routerLink]="['/employee']">
+                <mat-icon class="add-icon">chevron_left
+                </mat-icon>
+            </button>
+            <button mat-button *ngIf="!this.isCreateMode" class="button-float-right" color="warn" type="button"
+                (click)="deleteButtonClicked()">Delete
+                account</button>
+            <button mat-button *ngIf="!this.isCreateMode && !this.isEditMode" class="button-float-right" color="primary"
+                type="button" (click)='this.setEditMode(true)'>Edit
+                Profile</button>
+            <button mat-raised-button *ngIf="!this.isCreateMode && this.isEditMode" class="button-float-right"
+                color="primary" type="button" (click)='saveButtonClicked()'
+                [disabled]="!this.employeeForm.valid || !this.employeeForm.dirty">Save
+                Profile</button>
+            <button mat-button *ngIf="this.isCreateMode" class="button-float-right mat-green" type="button"
+                [disabled]="!this.employeeForm.valid" (click)='this.createButtonClicked()'>Create
+                Profile</button>
+            <div class="row page-content">
+                <div class="col-md-4">
+                    <div class="profile-img">
+                        <div formGroupName="personal">
+                            <img [src]="this.pictureSrc" (error)="this.errorHandler($event)" height="150" width="150">
+
+                            <mat-form-field class="example-full-width" appearance="standard"
+                                *ngIf="this.isCreateMode || this.isEditMode">
+                                <mat-label>Picture URL</mat-label>
+                                <input matInput type="text" formControlName="picture">
+                            </mat-form-field>
+                            <button mat-button style="float: left;" type="button"
+                                *ngIf="this.isCreateMode || this.isEditMode"
+                                [disabled]="this.employeeForm.get(['personal','picture']).value === ''"
+                                (click)='this.changePicture()'>Set Picture</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <mat-tab-group>
+                        <mat-tab label="Personal data">
+                            <app-employee-personal-tab [form]="this.employeeForm"></app-employee-personal-tab>
+                        </mat-tab>
+                        <mat-tab label="Educational attainement">
+                            <app-employee-education-tab [form]="this.employeeForm"></app-employee-education-tab>
+                        </mat-tab>
+                        <mat-tab label="Work experience">
+                            <app-employee-work-tab [form]="this.employeeForm"></app-employee-work-tab>
+                        </mat-tab>
+                    </mat-tab-group>
+                </div>
+            </div>
+        </form>
+    </mat-card>
+</div>

@@ -1,0 +1,63 @@
+<div class="table-container">
+  <mat-form-field class="filter-field">
+    <mat-label>Filter</mat-label>
+    <input (keyup)="filterSubject.next($event.target.value)" matInput placeholder="Hľadaj ... ">
+  </mat-form-field>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="min-height: 300px;">
+
+    <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+
+    <ng-container matColumnDef="photo">
+      <th mat-header-cell *matHeaderCellDef>Photo</th>
+      <td mat-cell *matCellDef="let element">
+        <div *ngIf="(element?.personal?.picture && element?.personal?.picture != ''); else elseBlock">
+          <img [src]="element.personal.picture" alt="Smiley face" height="150" width="150"></div>
+        <ng-template #elseBlock>
+          <img *ngIf="element.personal.gender === 1" src="assets/user-male-avatar.png" alt="Smiley face"
+            height="150" width="150">
+          <img *ngIf="element.personal.gender === 2" src="assets/user-female-avatar.png" alt="Smiley face"
+            height="150" width="150">
+        </ng-template>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="fullname">
+      <th mat-header-cell *matHeaderCellDef> Full name </th>
+      <td mat-cell *matCellDef="let element">
+        {{element.education.degree}}. {{element.personal.firstName}} {{element.personal.lastName}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="role">
+      <th mat-header-cell *matHeaderCellDef> Role </th>
+      <td mat-cell *matCellDef="let element">
+        {{this.roles[element.role]}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="clinic">
+      <th mat-header-cell *matHeaderCellDef> Department </th>
+      <td mat-cell *matCellDef="let element">
+        Elderly services
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="birthDate">
+      <th mat-header-cell *matHeaderCellDef> Age </th>
+      <td mat-cell *matCellDef="let element">
+        {{element.personal.birthDate | age}}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)='getRecord(row)'></tr>
+  </table>
+  <mat-paginator [length]="employeeTotal" [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+    class="mat-paginator-sticky"></mat-paginator>
+</div>
+
+
+<button mat-fab color="white" aria-label="Example icon-button with a heart icon" class="mat-button-left-bottom-corner">
+  <mat-icon class="add-icon" [inline]="true" [routerLink]="['/employee', 'new']">add</mat-icon>
+</button>

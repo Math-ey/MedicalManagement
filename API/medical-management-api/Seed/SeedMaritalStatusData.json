@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "value": "single"
+    },
+    {
+        "id": 2,
+        "value": "married"
+    },
+    {
+        "id": 3,
+        "value": "widowed"
+    },
+    {
+        "id": 4,
+        "value": "divorced"
+    },
+    {
+        "id": 5,
+        "value": "separated"
+    }
+]

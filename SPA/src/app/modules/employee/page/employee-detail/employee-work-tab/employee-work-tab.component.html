@@ -1,0 +1,56 @@
+<form [formGroup]="form">
+    <div class="container">
+        <div formGroupName="workExperience">
+            <div formArrayName="jobs">
+                <div *ngFor="let job of jobs().controls;let i = index">
+                    <div [formGroupName]="i">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <mat-form-field class="example-full-width" appearance="standard">
+                                    <mat-label>Company Name</mat-label>
+                                    <input matInput formControlName="companyName" required>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field class="example-full-width" appearance="standard">
+                                    <mat-label>Position</mat-label>
+                                    <input matInput formControlName="companyPosition" required>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-12">
+                                <mat-form-field class="example-full-width" appearance="standard">
+                                    <mat-label>Company Address</mat-label>
+                                    <input matInput formControlName="companyAddress" required>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field class="example-full-width" appearance="standard">
+                                    <mat-label>Hired from</mat-label>
+                                    <input matInput [matDatepicker]="hiredFromPicker"
+                                        formControlName="hiredInCompanyFromDate" required>
+                                    <mat-datepicker-toggle matSuffix [for]="hiredFromPicker"></mat-datepicker-toggle>
+                                    <mat-datepicker #hiredFromPicker></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field class="example-full-width" appearance="standard">
+                                    <mat-label>Hired to</mat-label>
+                                    <input matInput [matDatepicker]="hiredToPicker"
+                                        formControlName="hiredInCompanyToDate" required>
+                                    <mat-datepicker-toggle matSuffix [for]="hiredToPicker"></mat-datepicker-toggle>
+                                    <mat-datepicker #hiredToPicker></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-12">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Work description</mat-label>
+                                    <textarea matInput formControlName="workDescription"></textarea>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

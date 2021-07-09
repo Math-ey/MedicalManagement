@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "value": "High School Diplom"
+    },
+    {
+        "id": 2,
+        "value": "2 Year Certificate Course / Vocational Course"
+    },
+    {
+        "id": 3,
+        "value": "Bachelor's degree"
+    },
+    {
+        "id": 4,
+        "value": "Master's degree"
+    },
+    {
+        "id": 5,
+        "value": "Doctorate"
+    }
+]

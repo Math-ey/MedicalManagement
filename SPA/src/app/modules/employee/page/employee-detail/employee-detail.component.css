@@ -1,0 +1,38 @@
+
+.profile-img{
+    text-align: center;
+}
+.profile-img img{
+    width: 70%;
+    height: 100%;
+}
+
+.button-float-right {
+    float: right;
+    position: relative;
+}
+
+.mat-green {
+    color: green;
+}
+
+.page-content {
+    padding-top: 50px;
+}
+
+
+input:disabled {
+    color:rgba(0,0,0,.87);
+}
+
+::ng-deep.mat-select-disabled .mat-select-value {
+    color: rgba(0,0,0,.87);
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+mat-card {
+    min-height: 700px;
+}

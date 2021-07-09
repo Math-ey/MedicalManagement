@@ -1,0 +1,14 @@
+<div class=container-wrap>
+  <ng-progress [spinner]="false" id="progressBar"></ng-progress>
+  <mat-sidenav-container fullscreen>
+    <mat-sidenav class="test" #sidenav class="" mode="side" position="start" [opened]="true">
+      <app-sidebar ></app-sidebar>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <app-header class="header" (toggleSidebar)="sidenav.toggle()"></app-header>
+      <div class="content">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

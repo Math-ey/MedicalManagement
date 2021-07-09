@@ -1,0 +1,124 @@
+<div class="container" *ngIf="viewLoaded">
+    <mat-card>
+        <form [formGroup]="this.treatmentForm">
+            <button mat-mini-fab color="primary" type="button" [routerLink]="['/treatment']">
+                <mat-icon class="add-icon">chevron_left
+                </mat-icon>
+            </button>
+            <button mat-button *ngIf="!this.isCreateMode" class="button-float-right" color="warn" type="button"
+                (click)="deleteButtonClicked()">Delete
+                Treatment</button>
+            <button mat-button *ngIf="!this.isCreateMode && !this.isEditMode" class="button-float-right" color="primary"
+                type="button" (click)='this.setEditMode(true)'>Edit
+                Treatment</button>
+            <button mat-raised-button *ngIf="!this.isCreateMode && this.isEditMode" class="button-float-right"
+                color="primary" type="button" (click)='saveButtonClicked()'
+                [disabled]="!this.isFormValid() || !this.treatmentForm.dirty">Save
+                Treatment</button>
+            <button mat-button *ngIf="this.isCreateMode" class="button-float-right mat-green" type="button"
+                [disabled]="!this.isFormValid()" (click)='this.createButtonClicked()'>Create
+                Treatment</button>
+            <div class="row page-content">
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <mat-form-field appearance="standard">
+                                <mat-label>Treatment Title</mat-label>
+                                <input matInput formControlName="title" type="text" required>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-form-field class="example-full-width" appearance="standard">
+                                <mat-label>Type</mat-label>
+                                <mat-select formControlName="type" required>
+                                    <mat-option>None</mat-option>
+                                    <mat-option *ngFor="let type of treatmentTypes" [value]="type.id">
+                                        {{type.value}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-form-field class="example-full-width" appearance="standard">
+                                <mat-label>Status</mat-label>
+                                <mat-select formControlName="status" required>
+                                    <mat-option>None</mat-option>
+                                    <mat-option *ngFor="let status of treatmentStatus" [value]="status.id">
+                                        {{status.value}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-form-field class="example-full-width" appearance="standard">
+                                <mat-label>Treatment Date</mat-label>
+                                <input matInput [matDatepicker]="picker" formControlName="date" required>
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-form-field appearance="standard">
+                                <mat-label>Room</mat-label>
+                                <input matInput formControlName="roomNumber" type="text" required>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field>
+                        <mat-chip-list #chipList [disabled]="this.treatmentForm.disabled">
+                            <mat-chip *ngIf="treatmentForm.get('mainDoctorObject').value" [selectable]="true" [removable]="true"
+                                (removed)="removeMainDoctor()">
+                                {{this.treatmentForm.get('mainDoctorObject').value.firstName}}
+                                {{this.treatmentForm.get('mainDoctorObject').value.lastName}}
+                                <mat-icon matChipRemove>cancel</mat-icon>
+                            </mat-chip>
+                        </mat-chip-list>
+                        <mat-label>Main Doctor</mat-label>
+                        <input *ngIf="this.treatmentForm.get('mainDoctorInput').enabled" type="text" matInput
+                             [matAutocomplete]="auto" [matChipInputFor]="chipList"
+                            formControlName="mainDoctorInput" class="main-doctor-input">
+                        <mat-icon matSuffix *ngIf="!this.treatmentForm.get('mainDoctorObject').value">search</mat-icon>
+                        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="mainDoctorSelected($event)"
+                            [displayWith]="displayNull">
+                            <mat-option *ngFor="let employee of this.filteredEmployees$ | async" [value]="employee">
+                                {{employee?.personal?.firstName}} {{employee?.personal?.lastName}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <input type="text" matInput placeholder="Other Doctors" [matAutocomplete]="auto2"
+                            formControlName="otherDoctorsInput" [matChipInputFor]="chipList2">
+                        <mat-icon matSuffix>search</mat-icon>
+                        <mat-autocomplete #auto2="matAutocomplete" [displayWith]="displayNull"
+                            (optionSelected)="otherDoctorSelected($event)">
+                            <mat-option *ngFor="let employee of this.filteredEmployeesOther$ | async"
+                                [value]="employee">
+                                {{employee?.personal?.firstName}} {{employee?.personal?.lastName}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+
+                    <mat-chip-list #chipList2 [disabled]="this.treatmentForm.disabled">
+                        <mat-chip *ngFor="let employee of this.treatmentForm.get('otherDoctorsObject').value" [selectable]="true" [removable]="true"
+                            (removed)="removeOtherDoctor(employee.id)">
+                            {{employee?.firstName}} {{employee?.lastName}}
+                            <mat-icon matChipRemove>cancel</mat-icon>
+                        </mat-chip>
+                    </mat-chip-list>
+                </div>
+            </div>
+            <hr>
+            <div class="row" style="padding-top: 50px;">
+                <div class="col-md-12">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Medical Record</mat-label>
+                        <textarea matInput formControlName="description"></textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+        </form>
+    </mat-card>
+</div>
